@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід в Адмін-панель</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <main>
+        <div class="container" style="max-width: 500px; margin-top: 5rem;">
+            <h2 style="text-align: center;">Вхід в Адмін-панель</h2>
+            
+            <form action="backend/login_process.php" method="POST" class="payment-form">
+                
+                <div class="form-group">
+                    <label for="username">Логін:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">
+                    Увійти
+                </button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

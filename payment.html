@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформлення замовлення - Apex Strategies</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.php" class="logo">Apex Strategies</a>
+            <ul>
+                <li><a href="index.php">Головна</a></li>
+                <li><a href="services.php">Послуги</a></li>
+                <li><a href="portfolio.html">Портфоліо</a></li>
+                <li><a href="team.php">Наша Команда</a></li>
+                <li><a href="contacts.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2 style="text-align: center;">Оформлення замовлення </h2>
+            
+            <form action="backend/process_payment.php" method="POST" class="payment-form">
+
+                <h3>Ваше замовлення:</h3>
+                <div class="form-group">
+                    <label>Послуга:</label>
+                    <input type="text" id="service-name" readonly 
+                           style="background-color: #eee; font-weight: bold;">
+                </div>
+                <div class="form-group">
+                    <label>До сплати:</label>
+                    <input type="text" id="service-price" readonly 
+                           style="background-color: #eee; font-weight: bold;">
+                </div>
+
+                <hr style="margin: 2rem 0;">
+
+                <h3>Ваші контактні дані:</h3>
+                <div class="form-group">
+                    <label for="customer_name">Ваше ім'я:</label>
+                    <input type="text" id="customer_name" name="customer_name" 
+                           placeholder="Іван Іванов" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer_email">Ваш Email:</label>
+                    <input type="email" id="customer_email" name="customer_email" 
+                           placeholder="example@gmail.com" required>
+                </div>
+
+                <hr style="margin: 2rem 0;">
+
+                <h3>Дані картки :</h3>
+                <p style="font-size: 0.9rem; color: #777;">
+                    Це імітація. Жодні дані картки не будуть збережені. 
+                    Можете вводити будь-які цифри.
+                </p>
+
+                <div class="form-group">
+                    <label for="card-number">Номер картки:</label>
+                    <input type="text" id="card-number" name="card_number" 
+                           placeholder="0000 0000 0000 0000" required maxlength="16">
+                </div>
+                <div class="form-group">
+                    <label for="card-expiry">Термін дії:</label>
+                    <input type="text" id="card-expiry" name="card_expiry" 
+                           placeholder="MM / РР" required maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label for="card-cvv">CVV-код:</label>
+                    <input type="text" id="card-cvv" name="card_cvv" 
+                           placeholder="123" required maxlength="3">
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">
+                    Сплатити 
+                </button>
+
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // --- Скрипт для заповнення полів та валідації ---
+        document.addEventListener("DOMContentLoaded", function() {
+            // Отримуємо параметри з URL
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            const serviceName = urlParams.get('service');
+            const servicePrice = urlParams.get('price');
+
+            // Знаходимо поля, які бачить юзер
+            const serviceInput = document.getElementById('service-name');
+            const priceInput = document.getElementById('service-price');
+            const form = document.querySelector('.payment-form');
+            
+            // Заповнюємо видимі поля
+            if (serviceName) {
+                serviceInput.value = serviceName;
+                
+                // Створюємо ПРИХОВАНЕ поле, яке реально поїде на сервер
+                const hiddenServiceInput = document.createElement('input');
+                hiddenServiceInput.type = 'hidden';
+                hiddenServiceInput.name = 'service_name_php'; // Це ім'я отримає PHP
+                hiddenServiceInput.value = serviceName;
+                form.appendChild(hiddenServiceInput);
+            }
+            if (servicePrice) {
+                priceInput.value = "$" + servicePrice;
+                
+                // Створюємо ПРИХОВАНЕ поле
+                const hiddenPriceInput = document.createElement('input');
+                hiddenPriceInput.type = 'hidden';
+                hiddenPriceInput.name = 'service_price_php'; // Це ім'я отримає PHP
+                hiddenPriceInput.value = servicePrice;
+                form.appendChild(hiddenPriceInput);
+            }
+        });
+
+        // --- ВАЛІДАЦІЯ: дозволяємо вводити тільки цифри ---
+        
+        // Функція-фільтр: видаляє всі не-цифри
+        function filterDigits(event) {
+            // Дозволяємо 'Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'
+            if (['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'].includes(event.key)) {
+                return;
+            }
+            // Якщо це не цифра, блокуємо ввід
+            if (event.key < '0' || event.key > '9') {
+                event.preventDefault();
+            }
+        }
+
+        // Застосовуємо фільтр до полів
+        document.getElementById('card-number').addEventListener('keydown', filterDigits);
+        document.getElementById('card-cvv').addEventListener('keydown', filterDigits);
+    </script>
+
+</body>
+</html>

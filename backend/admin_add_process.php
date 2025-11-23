@@ -1,0 +1,74 @@
+<?php
+// --- backend/admin_add_process.php ---
+
+// 1. "Охоронець"
+require_once 'admin_auth.php';
+
+// 2. Перевіряємо, чи дані прийшли методом POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // 3. Підключення до БД
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "apex_strategies_db";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // 4. Отримуємо ВСІ дані з форми
+    // Блок 1
+    $icon = $_POST['icon'];
+    $title = $_POST['title'];
+    $description_short = $_POST['description_short'];
+    $price = $_POST['price'];
+
+    // Блок 2
+    $image_url = $_POST['image_url'];
+    $page_title = $_POST['page_title'];
+    $page_subtitle = $_POST['page_subtitle'];
+    $page_description = $_POST['page_description'];
+    
+    // Перетворюємо список з textarea (де кожен пункт з нового рядка)
+    // на JSON-рядок для збереження в базі
+    $features_array = explode("\n", trim($_POST['page_features']));
+    $page_features = json_encode($features_array);
+
+    // Блок 3
+    $performer_name = $_POST['performer_name'];
+    $performer_role = $_POST['performer_role'];
+    $performer_photo_url = $_POST['performer_photo_url'];
+    $performer_bio = $_POST['performer_bio'];
+
+    // 5. Готуємо запит на вставку (13 полів)
+    $stmt = $conn->prepare("INSERT INTO services 
+        (icon, title, description_short, price, image_url, page_title, page_subtitle, 
+         page_description, page_features, performer_name, performer_role, 
+         performer_photo_url, performer_bio) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    
+    // 'sssisssssssss' - типи даних (s-string, i-integer)
+    $stmt->bind_param("sssisssssssss", 
+        $icon, $title, $description_short, $price, $image_url, $page_title, $page_subtitle, 
+        $page_description, $page_features, $performer_name, $performer_role, 
+        $performer_photo_url, $performer_bio
+    );
+
+    // 6. Виконуємо і перенаправляємо
+    if ($stmt->execute()) {
+        header("Location: admin_services.php");
+        exit();
+    } else {
+        echo "Помилка додавання послуги: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+
+} else {
+    // Якщо хтось зайшов на цей файл напряму, а не через форму
+    header("Location: admin_services.php");
+    exit();
+}
+?>
