@@ -1,15 +1,9 @@
 <?php
-// --- index.php (ОНОВЛЕНО) ---
+// --- index.php (ВИПРАВЛЕНО) ---
 
-// 1. Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// 1. Підключаємо наш файл з налаштуваннями бази
+// Це замінює ті 10 рядків коду, що були раніше
+require_once 'db.php'; 
 
 // 2. Отримуємо ВСІХ членів команди з бази
 $sql_team = "SELECT * FROM team ORDER BY id ASC";
@@ -55,18 +49,21 @@ $result_team = $conn->query($sql_team);
             <div class="team-grid">
                 
                 <?php
-                if ($result_team->num_rows > 0) {
+                if ($result_team && $result_team->num_rows > 0) {
                     // 4. Проходимо циклом по кожному члену команди
                     while($member = $result_team->fetch_assoc()) {
                         echo '<div class="team-card">';
-                        echo '    <img src="' . htmlspecialchars($member["photo_url"]) . '" alt="Фото ' . htmlspecialchars($member["name"]) . '">';
+                        // Додав перевірку на існування фото, щоб не ламалася верстка
+                        $photo = !empty($member["photo_url"]) ? htmlspecialchars($member["photo_url"]) : 'assets/default.jpg';
+                        
+                        echo '    <img src="' . $photo . '" alt="Фото ' . htmlspecialchars($member["name"]) . '">';
                         echo '    <h3>' . htmlspecialchars($member["name"]) . '</h3>';
                         echo '    <p>' . htmlspecialchars($member["role_short"]) . '</p>';
                         echo '    <p class="team-bio">' . htmlspecialchars($member["bio_short"]) . '</p>';
                         echo '</div>';
                     }
                 } else {
-                    echo "<p>Співробітників не знайдено.</p>";
+                    echo "<p>Співробітників не знайдено або помилка запиту.</p>";
                 }
                 ?>
 
