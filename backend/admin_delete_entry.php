@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_delete_entry.php (ОНОВЛЕНО) ---
+// --- backend/admin_delete_entry.php  ---
 
 require_once 'admin_auth.php';
 
@@ -19,7 +19,6 @@ if ($table !== 'orders' && $table !== 'messages') {
 }
 
 // 3. Підключення до БД
-// Використовуємо ../db.php, бо файл лежить на рівень вище
 require_once '../db.php';
 
 // 4. Готуємо запит на видалення

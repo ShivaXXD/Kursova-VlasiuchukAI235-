@@ -1,8 +1,7 @@
 <?php
-// --- index.php (ВИПРАВЛЕНО) ---
+// --- index.php  ---
 
 // 1. Підключаємо наш файл з налаштуваннями бази
-// Це замінює ті 10 рядків коду, що були раніше
 require_once 'db.php'; 
 
 // 2. Отримуємо ВСІХ членів команди з бази
@@ -50,10 +49,9 @@ $result_team = $conn->query($sql_team);
                 
                 <?php
                 if ($result_team && $result_team->num_rows > 0) {
-                    // 4. Проходимо циклом по кожному члену команди
+                    // 3. Проходимо циклом по кожному члену команди
                     while($member = $result_team->fetch_assoc()) {
                         echo '<div class="team-card">';
-                        // Додав перевірку на існування фото, щоб не ламалася верстка
                         $photo = !empty($member["photo_url"]) ? htmlspecialchars($member["photo_url"]) : 'assets/default.jpg';
                         
                         echo '    <img src="' . $photo . '" alt="Фото ' . htmlspecialchars($member["name"]) . '">';
@@ -75,6 +73,6 @@ $result_team = $conn->query($sql_team);
 </body>
 </html>
 <?php
-// 5. Закриваємо з'єднання з базою
+// 4. Закриваємо з'єднання з базою
 $conn->close();
 ?>

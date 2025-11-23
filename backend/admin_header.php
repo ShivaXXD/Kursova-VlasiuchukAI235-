@@ -1,6 +1,5 @@
 <?php
 // --- backend/admin_header.php ---
-// Цей файл ми будемо підключати на кожну сторінку адмінки
 ?>
 
 <!DOCTYPE html>

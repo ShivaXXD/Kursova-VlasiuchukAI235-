@@ -1,12 +1,12 @@
 <?php
-// --- backend/admin_services.php (ОНОВЛЕНО з Редагуванням) ---
+// --- backend/admin_services.php  ---
 
 // "Охоронець"
 require_once 'admin_auth.php';
 // Хедер
 require_once 'admin_header.php';
 
-// Підключення до БД (ОНОВЛЕНО)
+// Підключення до БД 
 require_once '../db.php';
 
 // Отримуємо всі послуги з бази

@@ -1,10 +1,10 @@
 <?php
-// --- backend/receipt.php (ОНОВЛЕНО) ---
+// --- backend/receipt.php  ---
 
 // === 1. ПІДКЛЮЧЕННЯ ДО БАЗИ ДАНИХ ===
 require_once '../db.php';
 
-// === 3. ОТРИМАННЯ ID ЗАМОВЛЕННЯ З URL ===
+// === 2. ОТРИМАННЯ ID ЗАМОВЛЕННЯ З URL ===
 if ( !isset($_GET['order_id']) ) {
     header("Location: ../index.html");
     exit();
@@ -12,7 +12,7 @@ if ( !isset($_GET['order_id']) ) {
 
 $order_id = $_GET['order_id'];
 
-// === 4. ОТРИМАННЯ ДАНИХ ЗАМОВЛЕННЯ З БАЗИ (ЗАХИЩЕНО) ===
+// === 3. ОТРИМАННЯ ДАНИХ ЗАМОВЛЕННЯ З БАЗИ (ЗАХИЩЕНО) ===
 $stmt = $conn->prepare("SELECT * FROM orders WHERE id = ?");
 $stmt->bind_param("i", $order_id); // 'i' - означає integer
 $stmt->execute();
@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
 $stmt->close();
 $conn->close();
 
-// === 5. ГЕНЕРАЦІЯ ДАНИХ ДЛЯ ЧЕКУ ===
+// === 4. ГЕНЕРАЦІЯ ДАНИХ ДЛЯ ЧЕКУ ===
 $receipt_number = "A-" . str_pad($order['id'], 6, '0', STR_PAD_LEFT);
 $order_date = date("d.m.Y \о H:i", strtotime($order['order_time']));
 ?>
@@ -64,7 +64,7 @@ $order_date = date("d.m.Y \о H:i", strtotime($order['order_time']));
             <div class="receipt-header">
                 <div class="receipt-icon">✓</div>
                 <h2>Оплату успішно проведено!</h2>
-                <p>(Це імітація чеку для курсового проекту)</p>
+                <p>(Чек для курсового проекту)</p>
             </div>
 
             <ul class="receipt-details">

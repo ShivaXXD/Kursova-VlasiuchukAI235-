@@ -1,10 +1,9 @@
 <?php
-// --- backend/login_process.php (ОНОВЛЕНО) ---
+// --- backend/login_process.php  ---
 
-// Запускаємо сесію. Це має бути НАЙПЕРШИЙ рядок у файлі.
 session_start();
 
-// --- Підключення до БД (ОНОВЛЕНО) ---
+// --- Підключення до БД  ---
 require_once '../db.php';
 
 // 1. Отримуємо дані з форми
@@ -25,7 +24,6 @@ if ($result->num_rows === 1) {
     // 3. Функція password_verify() порівнює введений пароль з хешем у базі
     if (password_verify($login_pass, $hashed_password)) {
         
-        // ПАРОЛЬ ПРАВИЛЬНИЙ!
         // 4. Записуємо в сесію, що користувач авторизований
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['admin_username'] = $login_user;

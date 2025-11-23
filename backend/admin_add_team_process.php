@@ -5,7 +5,7 @@ require_once 'admin_auth.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Підключення до БД (ОНОВЛЕНО)
+    // Підключення до БД 
     require_once '../db.php';
 
     // Отримуємо дані з форми

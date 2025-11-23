@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_edit_process.php (ОНОВЛЕНО) ---
+// --- backend/admin_edit_process.php  ---
 
 // 1. "Охоронець"
 require_once 'admin_auth.php';
@@ -7,7 +7,7 @@ require_once 'admin_auth.php';
 // 2. Перевіряємо, чи дані прийшли методом POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // 3. Підключення до БД (ОНОВЛЕНО)
+    // 3. Підключення до БД 
     require_once '../db.php';
 
     // 4. Отримуємо ВСІ дані з форми, ВКЛЮЧАЮЧИ ID
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $performer_photo_url = $_POST['performer_photo_url'];
     $performer_bio = $_POST['performer_bio'];
 
-    // 5. Готуємо запит на ОНОВЛЕННЯ (UPDATE)
+    // 5. Готуємо запит на ОНОВЛЕННЯ 
     $stmt = $conn->prepare("UPDATE services SET 
         icon = ?, title = ?, description_short = ?, price = ?, 
         image_url = ?, page_title = ?, page_subtitle = ?, 

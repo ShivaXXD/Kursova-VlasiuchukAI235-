@@ -23,7 +23,7 @@ $result_messages = $conn->query($sql_messages);
         <h1>Ласкаво просимо, <?php echo htmlspecialchars($_SESSION['admin_username']); ?>!</h1>
         <p>Це головна сторінка адмін-панелі. Звідси ви можете керувати вмістом сайту.</p>
 
-        <h2>Останні замовлення (імітації оплат)</h2>
+        <h2>Останні замовлення </h2>
         
         <table class="data-table">
             <thead>

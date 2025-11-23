@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_edit_order_process.php (ОНОВЛЕНО) ---
+// --- backend/admin_edit_order_process.php  ---
 
 // 1. "Охоронець"
 require_once 'admin_auth.php';
@@ -7,7 +7,7 @@ require_once 'admin_auth.php';
 // 2. Перевіряємо, чи дані прийшли методом POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // 3. Підключення до БД (ОНОВЛЕНО)
+    // 3. Підключення до БД 
     require_once '../db.php';
 
     // 4. Отримуємо ВСІ дані з форми
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $service_name = $_POST['service_name'];
     $service_price = $_POST['service_price'];
 
-    // 5. Готуємо запит на ОНОВЛЕННЯ (UPDATE)
+    // 5. Готуємо запит на ОНОВЛЕННЯ 
     $stmt = $conn->prepare("UPDATE orders SET 
         customer_name = ?, 
         customer_email = ?, 
@@ -42,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
 } else {
-    // Якщо хтось зайшов на цей файл напряму
     header("Location: admin_dashboard.php");
     exit();
 }

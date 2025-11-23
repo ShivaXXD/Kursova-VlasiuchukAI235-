@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_delete_service.php (ОНОВЛЕНО) ---
+// --- backend/admin_delete_service.php  ---
 
 // 1. "Охоронець" - перевіряємо, чи адмін
 require_once 'admin_auth.php';
@@ -11,7 +11,7 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-// 3. Підключення до БД (ОНОВЛЕНО)
+// 3. Підключення до БД 
 require_once '../db.php';
 
 // 4. Отримуємо ID (і перетворюємо на число для безпеки)
@@ -22,7 +22,6 @@ $stmt = $conn->prepare("DELETE FROM services WHERE id = ?");
 $stmt->bind_param("i", $service_id);
 
 if ($stmt->execute()) {
-    // Успіх! Повертаємо адміна назад на сторінку послуг
     header("Location: admin_services.php");
     exit();
 } else {

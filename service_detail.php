@@ -1,5 +1,5 @@
 <?php
-// --- service_detail.php (НОВИЙ ФАЙЛ) ---
+// --- service_detail.php  ---
 
 // 1. Перевіряємо, чи передано ID в URL
 if ( !isset($_GET['id']) ) {
@@ -8,7 +8,7 @@ if ( !isset($_GET['id']) ) {
     exit();
 }
 
-// 2. Підключення до БД (ОНОВЛЕНО)
+// 2. Підключення до БД 
 require_once 'db.php';
 
 // 3. Отримуємо ID (безпечно, як число)
@@ -78,7 +78,7 @@ $features_list = json_decode(trim($service['page_features']));
                     <h3>Що входить у послугу:</h3>
                     <ul>
                         <?php
-                        // 8. Динамічно генеруємо список "Що входить"
+                        // 7. Динамічно генеруємо список "Що входить"
                         if (is_array($features_list)) {
                             foreach ($features_list as $item) {
                                 // Використовуємо <strong> для виділення першої частини

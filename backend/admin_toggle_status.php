@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_toggle_status.php (ОНОВЛЕНО) ---
+// --- backend/admin_toggle_status.php  ---
 
 require_once 'admin_auth.php';
 
@@ -18,7 +18,7 @@ if ($table !== 'orders' && $table !== 'messages') {
     die("Недопустима таблиця.");
 }
 
-// 3. Підключення до БД (ОНОВЛЕНО)
+// 3. Підключення до БД 
 require_once '../db.php';
 
 // 4. Магічний запит, який "перевертає" значення:

@@ -1,7 +1,7 @@
 # Використовуємо офіційний образ PHP з Apache
 FROM php:8.2-apache
 
-# --- ДОДАНО: Встановлюємо розширення mysqli та pdo для роботи з базою ---
+# --- Встановлюємо розширення mysqli та pdo для роботи з базою ---
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable mysqli
 
 # Копіюємо всі файли проєкту в папку сервера

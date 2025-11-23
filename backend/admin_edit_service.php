@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_edit_service.php (ОНОВЛЕНО) ---
+// --- backend/admin_edit_service.php  ---
 
 // 1. "Охоронець"
 require_once 'admin_auth.php';
@@ -12,7 +12,7 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-// 4. Підключення до БД (ОНОВЛЕНО)
+// 4. Підключення до БД 
 require_once '../db.php';
 
 // 5. Отримуємо ID (і перетворюємо на число для безпеки)
@@ -25,7 +25,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    // Якщо послуги з таким ID немає
     header("Location: admin_services.php");
     exit();
 }

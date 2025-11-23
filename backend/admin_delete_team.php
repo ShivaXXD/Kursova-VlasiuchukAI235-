@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_delete_team.php (ОНОВЛЕНО) ---
+// --- backend/admin_delete_team.php ---
 
 require_once 'admin_auth.php';
 
@@ -8,7 +8,7 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-// Підключення до БД (ОНОВЛЕНО)
+// Підключення до БД 
 require_once '../db.php';
 
 $team_id = intval($_GET['id']);

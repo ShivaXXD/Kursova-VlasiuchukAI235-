@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_edit_order.php (ОНОВЛЕНО) ---
+// --- backend/admin_edit_order.php  ---
 
 // 1. "Охоронець"
 require_once 'admin_auth.php';
@@ -12,7 +12,7 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-// 4. Підключення до БД (ОНОВЛЕНО)
+// 4. Підключення до БД 
 require_once '../db.php';
 
 // 5. Отримуємо ID
@@ -42,8 +42,6 @@ $conn->close();
         <h1>Редагувати Замовлення #<?php echo $order['id']; ?></h1>
         <p>
             Ви можете змінити деталі цього замовлення. 
-            (У реальному світі це зазвичай не роблять, 
-            але це необхідно для демонстрації CRUD у курсовій).
         </p>
 
         <form action="admin_edit_order_process.php" method="POST" class="payment-form" style="max-width: 1000px;">

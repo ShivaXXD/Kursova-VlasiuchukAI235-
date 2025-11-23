@@ -7,7 +7,7 @@ require_once 'admin_auth.php';
 // 2. Перевіряємо, чи дані прийшли методом POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // 3. Підключення до БД (ОНОВЛЕНО)
+    // 3. Підключення до БД 
     require_once '../db.php';
 
     // 4. Отримуємо ВСІ дані з форми
@@ -60,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
 } else {
-    // Якщо хтось зайшов на цей файл напряму, а не через форму
     header("Location: admin_services.php");
     exit();
 }
