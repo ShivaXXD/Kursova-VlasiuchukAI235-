@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_edit_team.php ---
+// --- backend/admin_edit_team.php (ОНОВЛЕНО) ---
 require_once 'admin_auth.php';
 require_once 'admin_header.php';
 
@@ -8,15 +8,8 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-// Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Підключення до БД (ОНОВЛЕНО)
+require_once '../db.php';
 
 $team_id = intval($_GET['id']);
 

@@ -1,20 +1,13 @@
 <?php
-// --- backend/admin_team.php ---
+// --- backend/admin_team.php (ОНОВЛЕНО) ---
 
 // "Охоронець"
 require_once 'admin_auth.php';
 // Хедер
 require_once 'admin_header.php';
 
-// Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Підключення до БД (ОНОВЛЕНО)
+require_once '../db.php';
 
 // Отримуємо всіх членів команди з бази
 $sql_team = "SELECT id, name, role_short FROM team ORDER BY id ASC";

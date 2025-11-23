@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_delete_entry.php ---
+// --- backend/admin_delete_entry.php (ОНОВЛЕНО) ---
 
 require_once 'admin_auth.php';
 
@@ -19,14 +19,8 @@ if ($table !== 'orders' && $table !== 'messages') {
 }
 
 // 3. Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Використовуємо ../db.php, бо файл лежить на рівень вище
+require_once '../db.php';
 
 // 4. Готуємо запит на видалення
 $stmt = $conn->prepare("DELETE FROM `$table` WHERE id = ?");

@@ -1,19 +1,11 @@
 <?php
-// --- backend/login_process.php ---
+// --- backend/login_process.php (ОНОВЛЕНО) ---
 
 // Запускаємо сесію. Це має бути НАЙПЕРШИЙ рядок у файлі.
 session_start();
 
-// --- Конфігурація бази ---
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// --- Підключення до БД (ОНОВЛЕНО) ---
+require_once '../db.php';
 
 // 1. Отримуємо дані з форми
 $login_user = $_POST['username'];
@@ -39,7 +31,6 @@ if ($result->num_rows === 1) {
         $_SESSION['admin_username'] = $login_user;
 
         // 5. Перенаправляємо на головну сторінку адмінки
-        // (Ми створимо цей файл у наступному кроці)
         header("Location: admin_dashboard.php");
         exit();
 

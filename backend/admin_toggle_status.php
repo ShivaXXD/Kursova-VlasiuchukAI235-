@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_toggle_status.php ---
+// --- backend/admin_toggle_status.php (ОНОВЛЕНО) ---
 
 require_once 'admin_auth.php';
 
@@ -18,15 +18,8 @@ if ($table !== 'orders' && $table !== 'messages') {
     die("Недопустима таблиця.");
 }
 
-// 3. Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// 3. Підключення до БД (ОНОВЛЕНО)
+require_once '../db.php';
 
 // 4. Магічний запит, який "перевертає" значення:
 // (SET is_processed = NOT is_processed) - це як (0 стає 1) або (1 стає 0)

@@ -1,15 +1,8 @@
 <?php
-// === 1. КОНФІГУРАЦІЯ БАЗИ ДАНИХ ===
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db"; // Переконайся, що назва бази правильна
+// --- backend/receipt.php (ОНОВЛЕНО) ---
 
-// === 2. СТВОРЕННЯ З'ЄДНАННЯ ===
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// === 1. ПІДКЛЮЧЕННЯ ДО БАЗИ ДАНИХ ===
+require_once '../db.php';
 
 // === 3. ОТРИМАННЯ ID ЗАМОВЛЕННЯ З URL ===
 if ( !isset($_GET['order_id']) ) {

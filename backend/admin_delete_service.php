@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_delete_service.php ---
+// --- backend/admin_delete_service.php (ОНОВЛЕНО) ---
 
 // 1. "Охоронець" - перевіряємо, чи адмін
 require_once 'admin_auth.php';
@@ -11,15 +11,8 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-// 3. Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// 3. Підключення до БД (ОНОВЛЕНО)
+require_once '../db.php';
 
 // 4. Отримуємо ID (і перетворюємо на число для безпеки)
 $service_id = intval($_GET['id']);

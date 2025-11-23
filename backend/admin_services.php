@@ -6,15 +6,8 @@ require_once 'admin_auth.php';
 // Хедер
 require_once 'admin_header.php';
 
-// Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Підключення до БД (ОНОВЛЕНО)
+require_once '../db.php';
 
 // Отримуємо всі послуги з бази
 $sql_services = "SELECT id, icon, title, price FROM services ORDER BY id ASC";
@@ -55,11 +48,6 @@ $result_services = $conn->query($sql_services);
                         echo "<td>" . htmlspecialchars($row["title"]) . "</td>";
                         echo "<td>$" . $row["price"] . "</td>";
                         
-                        // 
-                        // ======================================
-                        // == ОНОВЛЕНО БЛОК "ДІЇ" ==
-                        // ======================================
-                        //
                         echo "<td>
                                 <a href='" . $edit_url . "' 
                                    style='color: #007BFF; font-weight: bold; margin-right: 15px;'>

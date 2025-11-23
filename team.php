@@ -1,15 +1,8 @@
 <?php
 // --- team.php (ОНОВЛЕНО) ---
 
-// 1. Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// 1. Підключення до БД (ОНОВЛЕНО)
+require_once 'db.php';
 
 // 2. Отримуємо ВСІХ членів команди з бази
 $sql_team = "SELECT * FROM team ORDER BY id ASC";

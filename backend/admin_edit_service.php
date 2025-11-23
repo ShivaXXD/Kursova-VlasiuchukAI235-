@@ -1,5 +1,5 @@
 <?php
-// --- backend/admin_edit_service.php ---
+// --- backend/admin_edit_service.php (ОНОВЛЕНО) ---
 
 // 1. "Охоронець"
 require_once 'admin_auth.php';
@@ -12,15 +12,8 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-// 4. Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// 4. Підключення до БД (ОНОВЛЕНО)
+require_once '../db.php';
 
 // 5. Отримуємо ID (і перетворюємо на число для безпеки)
 $service_id = intval($_GET['id']);

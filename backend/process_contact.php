@@ -1,19 +1,8 @@
 <?php
-// --- backend/process_contact.php ---
+// --- backend/process_contact.php (ОНОВЛЕНО) ---
 
-// === 1. КОНФІГУРАЦІЯ БАЗИ ДАНИХ ===
-$servername = "localhost";
-$username = "root";       // Стандартний логін для XAMPP
-$password = "";           // Стандартний пароль (порожній) для XAMPP
-$dbname = "apex_strategies_db"; // Назва вашої БД
-
-// === 2. СТВОРЕННЯ З'ЄДНАННЯ ===
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Перевірка з'єднання
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// === 1. ПІДКЛЮЧЕННЯ ДО БАЗИ ДАНИХ ===
+require_once '../db.php';
 
 // === 3. ОТРИМАННЯ ДАНИХ З ФОРМИ ===
 // Ми отримуємо дані, які відправив 'contacts.html' методом POST
@@ -22,7 +11,7 @@ $sender_email = $_POST['email'];
 $message_text = $_POST['message'];
 
 // === 4. ПІДГОТОВКА ЗАПИТУ (ЗАХИСТ ВІД SQL-ІН'ЄКЦІЙ) ===
-// Це вимога з методички про безпеку [cite: 703]
+// Це вимога з методички про безпеку
 // Ми не вставляємо дані напряму, а використовуємо '?'
 $stmt = $conn->prepare("INSERT INTO messages (sender_name, sender_email, message_text) VALUES (?, ?, ?)");
 
@@ -42,5 +31,4 @@ if ($stmt->execute()) {
 // === 6. ЗАКРИТТЯ З'ЄДНАНЬ ===
 $stmt->close();
 $conn->close();
-
 ?>

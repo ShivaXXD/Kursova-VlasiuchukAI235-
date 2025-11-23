@@ -1,18 +1,8 @@
 <?php
-// --- backend/process_payment.php ---
+// --- backend/process_payment.php (ОНОВЛЕНО) ---
 
-// === 1. КОНФІГУРАЦІЯ БАЗИ ДАНИХ ===
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-
-// === 2. СТВОРЕННЯ З'ЄДНАННЯ ===
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// === 1. ПІДКЛЮЧЕННЯ ДО БАЗИ ДАНИХ ===
+require_once '../db.php';
 
 // === 3. ОТРИМАННЯ ДАНИХ З ФОРМИ ===
 $customer_name = $_POST['customer_name'];
@@ -22,7 +12,7 @@ $customer_email = $_POST['customer_email'];
 $service_name = $_POST['service_name_php'];
 $service_price = $_POST['service_price_php'];
 
-/* * ВАЖЛИВО (Вимога безпеки з методички [cite: 700]):
+/* * ВАЖЛИВО (Вимога безпеки з методички):
 * Ми свідомо НЕ отримуємо і НЕ зберігаємо дані картки:
 * $_POST['card_number']
 * $_POST['card_expiry']
@@ -53,5 +43,4 @@ if ($stmt->execute()) {
 // === 6. ЗАКРИТТЯ З'ЄДНАНЬ ===
 $stmt->close();
 $conn->close();
-
 ?>

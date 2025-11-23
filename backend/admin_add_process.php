@@ -7,15 +7,8 @@ require_once 'admin_auth.php';
 // 2. Перевіряємо, чи дані прийшли методом POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // 3. Підключення до БД
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "apex_strategies_db";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    // 3. Підключення до БД (ОНОВЛЕНО)
+    require_once 'db.php';
 
     // 4. Отримуємо ВСІ дані з форми
     // Блок 1

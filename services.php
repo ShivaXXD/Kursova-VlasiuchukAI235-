@@ -1,15 +1,8 @@
 <?php
 // --- services.php (ОНОВЛЕНО) ---
 
-// 1. Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// 1. Підключення до БД (ОНОВЛЕНО)
+require_once 'db.php';
 
 // 2. Отримуємо всі послуги з бази
 // Ми беремо тільки ті дані, що потрібні для КАРТОК

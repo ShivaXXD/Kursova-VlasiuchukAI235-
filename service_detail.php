@@ -8,15 +8,8 @@ if ( !isset($_GET['id']) ) {
     exit();
 }
 
-// 2. Підключення до БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "apex_strategies_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// 2. Підключення до БД (ОНОВЛЕНО)
+require_once 'db.php';
 
 // 3. Отримуємо ID (безпечно, як число)
 $service_id = intval($_GET['id']);
